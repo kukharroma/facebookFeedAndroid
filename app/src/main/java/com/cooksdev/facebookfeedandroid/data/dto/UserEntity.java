@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserEntity {
 
-    @SerializedName("pictureEntity")
+    @SerializedName("picture")
     @Expose
     private PictureEntity pictureEntity;
     @SerializedName("name")

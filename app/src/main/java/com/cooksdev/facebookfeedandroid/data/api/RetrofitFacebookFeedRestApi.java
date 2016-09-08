@@ -4,6 +4,7 @@ import com.cooksdev.facebookfeedandroid.data.dto.UserEntity;
 
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -12,5 +13,5 @@ import rx.Observable;
 public interface RetrofitFacebookFeedRestApi {
 
     @GET(Urls.USER_INFO)
-    Observable<UserEntity> getUserInfo();
+    Observable<UserEntity> getUserInfo(@Query("access_token") String accessToken);
 }

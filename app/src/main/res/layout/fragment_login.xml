@@ -39,5 +39,6 @@
         android:layout_alignRight="@+id/iv_photo_profile"
         android:layout_below="@+id/tv_username"
         android:layout_marginTop="25dp"
+        android:visibility="invisible"
         android:text="@string/label_show_posts" />
 </RelativeLayout>

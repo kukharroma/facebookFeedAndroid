@@ -26,30 +26,10 @@ public class FacebookFeedApi {
     private RetrofitFacebookFeedRestApi retrofitFacebookFeedRestApi;
 
     private FacebookFeedApi() {
-
-
-
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Interceptor.Chain chain) throws IOException {
-                Request original = chain.request();
-                Request request = original.newBuilder()
-                        .header(Constants.ACCESS_TOKEN, AccessToken.getCurrentAccessToken().getToken())
-                        .method(original.method(), original.body())
-                        .build();
-                return chain.proceed(request);
-            }
-        });
-        httpClient.addInterceptor(logging);
-
         retrofitFacebookFeedRestApi = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(httpClient.build())
                 .build()
                 .create(RetrofitFacebookFeedRestApi.class);
     }
@@ -61,6 +41,6 @@ public class FacebookFeedApi {
     }
 
     public Observable<UserEntity> getUserInfo() {
-        return retrofitFacebookFeedRestApi.getUserInfo();
+        return retrofitFacebookFeedRestApi.getUserInfo(AccessToken.getCurrentAccessToken().getToken());
     }
 }
