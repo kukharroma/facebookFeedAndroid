@@ -3,6 +3,7 @@ package com.cooksdev.facebookfeedandroid.ui.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import com.cooksdev.facebookfeedandroid.model.User;
 import com.cooksdev.facebookfeedandroid.presenter.ILoginPresenter;
 import com.cooksdev.facebookfeedandroid.presenter.impl.LoginPresenter;
 import com.cooksdev.facebookfeedandroid.ui.view.ILoginView;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
 
 import org.w3c.dom.Text;
@@ -26,12 +30,14 @@ import org.w3c.dom.Text;
 /**
  * Created by roma on 08.09.16.
  */
-public class LoginFragment extends BaseFragment implements ILoginView{
+public class LoginFragment extends BaseFragment implements ILoginView {
 
     private LoginButton btFbLogin;
     private Button btPosts;
     private ImageView ivProfile;
     private TextView tvUsername;
+
+    private AccessTokenTracker accessTokenTracker;
 
     private ILoginPresenter presenter;
 
@@ -64,6 +70,15 @@ public class LoginFragment extends BaseFragment implements ILoginView{
         ivProfile = (ImageView) view.findViewById(R.id.iv_photo_profile);
         btPosts = (Button) view.findViewById(R.id.bt_show_posts);
         presenter.registerFbLoginButtonCallback(btFbLogin);
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if (currentAccessToken == null)
+                    hideUserInfo();
+            }
+        };
+        accessTokenTracker.startTracking();
+
     }
 
     @Override
@@ -76,6 +91,12 @@ public class LoginFragment extends BaseFragment implements ILoginView{
     public void onStop() {
         super.onStop();
         presenter.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        accessTokenTracker.stopTracking();
     }
 
     @Override
@@ -110,8 +131,8 @@ public class LoginFragment extends BaseFragment implements ILoginView{
 
     @Override
     public void hideUserInfo() {
-//        ivProfile.setImageDrawable(null);
-//        tvUsername.setText(getString(R.string.empty));
-//        btPosts.setVisibility(View.INVISIBLE);
+        ivProfile.setImageDrawable(null);
+        tvUsername.setText(getString(R.string.empty));
+        btPosts.setVisibility(View.INVISIBLE);
     }
 }

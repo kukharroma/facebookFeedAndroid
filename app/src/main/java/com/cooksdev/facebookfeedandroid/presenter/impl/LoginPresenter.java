@@ -81,7 +81,6 @@ public class LoginPresenter implements ILoginPresenter {
     class FbFeedFacebookCallback implements FacebookCallback<LoginResult> {
         @Override
         public void onSuccess(LoginResult loginResult) {
-            Log.i(this.getClass().getSimpleName(), loginResult.getAccessToken().getToken());
             useCase.execute(new UserInfoSubscriber());
         }
 
