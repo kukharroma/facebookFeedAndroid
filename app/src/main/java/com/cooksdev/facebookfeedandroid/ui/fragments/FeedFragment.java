@@ -13,6 +13,10 @@ import com.cooksdev.facebookfeedandroid.R;
  */
 public class FeedFragment  extends BaseFragment{
 
+    public static FeedFragment newInstance() {
+        return new FeedFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

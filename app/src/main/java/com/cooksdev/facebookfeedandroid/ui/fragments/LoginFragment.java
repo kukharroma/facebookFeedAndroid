@@ -102,7 +102,6 @@ public class LoginFragment extends BaseFragment implements ILoginView{
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        ivProfile.setVisibility(View.GONE);
                         return false;
                     }
                 })
@@ -111,8 +110,8 @@ public class LoginFragment extends BaseFragment implements ILoginView{
 
     @Override
     public void hideUserInfo() {
-        ivProfile.setImageDrawable(null);
-        tvUsername.setText(getString(R.string.empty));
-        btPosts.setVisibility(View.INVISIBLE);
+//        ivProfile.setImageDrawable(null);
+//        tvUsername.setText(getString(R.string.empty));
+//        btPosts.setVisibility(View.INVISIBLE);
     }
 }
