@@ -17,6 +17,12 @@ public class FeedFragment  extends BaseFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
+        initComponents(view);
         return view;
+    }
+
+    @Override
+    public void initComponents(View view) {
+
     }
 }

@@ -2,7 +2,9 @@ package com.cooksdev.facebookfeedandroid.app;
 
 import android.app.Application;
 
+import com.cooksdev.facebookfeedandroid.util.StringsUtil;
 import com.facebook.FacebookSdk;
+import com.facebook.LoggingBehavior;
 import com.facebook.appevents.AppEventsLogger;
 
 /**
@@ -15,5 +17,7 @@ public class FacebookFeedApplication extends Application{
         super.onCreate();
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
+        StringsUtil.initialize(this);
+        FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS);
     }
 }

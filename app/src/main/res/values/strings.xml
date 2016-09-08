@@ -1,6 +1,22 @@
 <resources>
     <string name="app_name">FacebookFeedAndroid</string>
 
+    <!--facebook keys-->
     <string name="facebook_app_id">1765128117093632</string>
     <string name="fb_login_protocol_scheme">fb1765128117093632</string>
+
+
+    <!--facebook-->
+    <string name="fb_fields">fields</string>
+    <string name="fb_permissions">public_profile,user_photos</string>
+
+
+    <!--login-->
+    <string name="label_show_posts">Show posts</string>
+    <string name="message_user_canceled_login">User canceled login</string>
+
+
+    <!--default-->
+    <string name="empty"></string>
+
 </resources>
