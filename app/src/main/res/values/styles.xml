@@ -8,4 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <!--buttons-->
+    <style name="ButtonShowPostsStyle"></style>
+
+    <!--image view-->
+    <style name="ImageViewProfileStyle"></style>
+
+    <style name="ImageViewPostStyle"></style>
+
+    <!--text view-->
+    <style name="TextViewUserNameStyle"></style>
+
+    <!--card view-->
+    <style name="CardViewPostStyle" parent="CardView">
+        <item name="cardCornerRadius">4dp</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+
+
+
+
 </resources>
