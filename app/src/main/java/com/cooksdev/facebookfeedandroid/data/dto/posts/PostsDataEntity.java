@@ -12,7 +12,7 @@ public class PostsDataEntity {
     @SerializedName("data")
     @Expose
     private List<PostEntity> data = new ArrayList<>();
-    @SerializedName("pagingEntity")
+    @SerializedName("paging")
     @Expose
     private PagingEntity pagingEntity;
 

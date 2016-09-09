@@ -8,7 +8,7 @@
 
     <!--facebook-->
     <string name="fb_fields">fields</string>
-    <string name="fb_permissions">public_profile,user_photos</string>
+    <string name="fb_permissions">public_profile,user_photos,user_posts</string>
 
 
     <!--login-->

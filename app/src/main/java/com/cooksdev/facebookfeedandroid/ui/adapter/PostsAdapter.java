@@ -33,6 +33,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
 
     public void updatePosts(Posts posts) {
         this.posts = posts.getPosts();
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -79,7 +80,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         public void loadPhoto(String imageUrl) {
             Glide.with(context)
                     .load(imageUrl)
-                    .fitCenter()
+                    .centerCrop()
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {

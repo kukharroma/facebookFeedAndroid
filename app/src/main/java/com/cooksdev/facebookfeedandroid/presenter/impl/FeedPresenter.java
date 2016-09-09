@@ -13,11 +13,16 @@ import com.cooksdev.facebookfeedandroid.ui.view.IFeedView;
 public class FeedPresenter implements IFeedPresenter {
 
     private IFeedView view;
-    private GetUserPostsUseCase useCase;
+    private GetUserPostsUseCase useCase = new GetUserPostsUseCase();
 
     @Override
     public void setView(IFeedView view) {
         this.view = view;
+    }
+
+    @Override
+    public void getPosts() {
+        useCase.execute(new GetPostsSubscriber());
     }
 
     @Override
@@ -38,18 +43,18 @@ public class FeedPresenter implements IFeedPresenter {
 
     @Override
     public void onStop() {
-
+        useCase.unSubscribe();
     }
 
     class GetPostsSubscriber extends BaseSubscriber<Posts> {
         @Override
         public void onCompleted() {
-
+            view.showMessage("onCompleted()");
         }
 
         @Override
         public void onError(Throwable e) {
-
+            view.showMessage(e.getMessage());
         }
 
         @Override
