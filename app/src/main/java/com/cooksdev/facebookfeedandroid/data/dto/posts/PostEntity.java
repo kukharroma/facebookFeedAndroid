@@ -4,6 +4,8 @@ package com.cooksdev.facebookfeedandroid.data.dto.posts;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class PostEntity {
 
     @SerializedName("permalink_url")
@@ -17,7 +19,7 @@ public class PostEntity {
     private String message;
     @SerializedName("created_time")
     @Expose
-    private String createdTime;
+    private Date createdTime;
     @SerializedName("id")
     @Expose
     private String id;
@@ -67,14 +69,14 @@ public class PostEntity {
     /**
      * @return The createdTime
      */
-    public String getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
     /**
      * @param createdTime The created_time
      */
-    public void setCreatedTime(String createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
