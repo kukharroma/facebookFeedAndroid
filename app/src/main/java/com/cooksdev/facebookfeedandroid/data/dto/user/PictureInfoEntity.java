@@ -1,5 +1,5 @@
 
-package com.cooksdev.facebookfeedandroid.data.dto;
+package com.cooksdev.facebookfeedandroid.data.dto.user;
 
 
 import com.google.gson.annotations.Expose;

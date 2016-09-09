@@ -11,6 +11,7 @@ import com.cooksdev.facebookfeedandroid.model.User;
 import com.cooksdev.facebookfeedandroid.presenter.ILoginPresenter;
 import com.cooksdev.facebookfeedandroid.ui.view.ILoginView;
 import com.cooksdev.facebookfeedandroid.util.StringsUtil;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -38,11 +39,13 @@ public class LoginPresenter implements ILoginPresenter {
         fbCallbackManager = CallbackManager.Factory.create();
         fbFeedFacebookCallback = new FbFeedFacebookCallback();
         useCase = new GetUserInfoUseCase();
+
     }
 
     @Override
     public void onStart() {
-
+        if (AccessToken.getCurrentAccessToken() != null)
+            useCase.execute(new UserInfoSubscriber());
     }
 
     @Override

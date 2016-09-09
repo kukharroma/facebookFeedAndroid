@@ -1,17 +1,9 @@
 package com.cooksdev.facebookfeedandroid.data.api;
 
-import com.cooksdev.facebookfeedandroid.data.dto.UserEntity;
+import com.cooksdev.facebookfeedandroid.data.dto.posts.PostsEntity;
+import com.cooksdev.facebookfeedandroid.data.dto.user.UserEntity;
 import com.facebook.AccessToken;
-import com.facebook.FacebookSdk;
 
-import java.io.IOException;
-
-import okhttp3.Connection;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -42,5 +34,9 @@ public class FacebookFeedApi {
 
     public Observable<UserEntity> getUserInfo() {
         return retrofitFacebookFeedRestApi.getUserInfo(AccessToken.getCurrentAccessToken().getToken());
+    }
+
+    public Observable<PostsEntity> getUserPosts() {
+        return retrofitFacebookFeedRestApi.getUserPosts(AccessToken.getCurrentAccessToken().getToken());
     }
 }

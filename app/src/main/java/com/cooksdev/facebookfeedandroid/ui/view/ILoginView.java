@@ -11,5 +11,7 @@ public interface ILoginView extends IBaseView {
 
     void hideUserInfo();
 
+    void showPosts();
+
 
 }

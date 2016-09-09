@@ -19,6 +19,7 @@ import com.cooksdev.facebookfeedandroid.R;
 import com.cooksdev.facebookfeedandroid.model.User;
 import com.cooksdev.facebookfeedandroid.presenter.ILoginPresenter;
 import com.cooksdev.facebookfeedandroid.presenter.impl.LoginPresenter;
+import com.cooksdev.facebookfeedandroid.ui.activities.MainActivity;
 import com.cooksdev.facebookfeedandroid.ui.view.ILoginView;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -53,6 +54,12 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         presenter.onCreate();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.onStart();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,7 +85,12 @@ public class LoginFragment extends BaseFragment implements ILoginView {
             }
         };
         accessTokenTracker.startTracking();
-
+        btPosts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPosts();
+            }
+        });
     }
 
     @Override
@@ -134,5 +146,10 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         ivProfile.setImageDrawable(null);
         tvUsername.setText(getString(R.string.empty));
         btPosts.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showPosts() {
+        ((MainActivity) getActivity()).showFeedFragment();
     }
 }

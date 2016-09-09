@@ -25,6 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void showFeedFragment(){
         getSupportFragmentManager().beginTransaction().
-                add(R.id.container, FeedFragment.newInstance(), FeedFragment.class.getSimpleName()).addToBackStack("").commit();
+                replace(R.id.container, FeedFragment.newInstance(), FeedFragment.class.getSimpleName()).addToBackStack("").commit();
     }
 }

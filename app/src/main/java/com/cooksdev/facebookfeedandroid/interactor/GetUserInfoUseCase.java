@@ -1,6 +1,5 @@
 package com.cooksdev.facebookfeedandroid.interactor;
 
-import com.cooksdev.facebookfeedandroid.data.dto.UserEntity;
 import com.cooksdev.facebookfeedandroid.data.repository.UserRepository;
 import com.cooksdev.facebookfeedandroid.model.User;
 
