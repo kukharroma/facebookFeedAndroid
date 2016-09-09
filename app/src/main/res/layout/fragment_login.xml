@@ -6,40 +6,29 @@
     android:background="@drawable/background"
     android:orientation="vertical">
 
+
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/iv_photo_profile"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="15dp"
-        android:scaleType="fitCenter"
+        style="@style/ImageViewProfileStyle"
         app:riv_oval="true" />
 
     <TextView
         android:id="@+id/tv_username"
+        style="@style/TextViewUserNameStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white" />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/bt_show_posts"
+        style="@style/ButtonShowPostsStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="25dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/bg_button_show_posts"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:text="@string/label_show_posts"
-        android:textColor="@android:color/white" />
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.3"
+        android:layout_weight="0.5"
         android:gravity="center">
 
         <com.facebook.login.widget.LoginButton

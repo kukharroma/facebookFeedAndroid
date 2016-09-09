@@ -8,25 +8,63 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
     <!--buttons-->
-    <style name="ButtonShowPostsStyle"></style>
+
+    <style name="ButtonShowPostsStyle">
+        <item name="android:background">@drawable/bg_button_show_posts</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginBottom">25dp</item>
+        <item name="android:paddingLeft">45dp</item>
+        <item name="android:paddingRight">45dp</item>
+        <item name="android:text">@string/label_show_posts</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 
     <!--image view-->
-    <style name="ImageViewProfileStyle"></style>
 
-    <style name="ImageViewPostStyle"></style>
+    <style name="ImageViewProfileStyle">
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_height">225dp</item>
+        <item name="android:layout_width">225dp</item>
+    </style>
+
+    <style name="ImageViewPostStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:padding">3dp</item>
+    </style>
 
     <!--text view-->
-    <style name="TextViewUserNameStyle"></style>
+
+    <style name="TextViewUserNameStyle">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextViewCreatedStyle">
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <style name="TextViewMessageStyle">
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
 
     <!--card view-->
+
     <style name="CardViewPostStyle" parent="CardView">
         <item name="cardCornerRadius">4dp</item>
         <item name="cardElevation">4dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
     </style>
-
-
 
 
 </resources>
