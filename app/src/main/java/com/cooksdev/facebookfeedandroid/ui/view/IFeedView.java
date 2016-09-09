@@ -8,5 +8,6 @@ import com.cooksdev.facebookfeedandroid.model.Posts;
 public interface IFeedView extends IBaseView {
 
     void initPostsAdapter();
+
     void showPosts(Posts posts);
 }

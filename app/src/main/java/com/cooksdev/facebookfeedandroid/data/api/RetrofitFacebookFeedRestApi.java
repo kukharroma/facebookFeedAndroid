@@ -1,6 +1,5 @@
 package com.cooksdev.facebookfeedandroid.data.api;
 
-import com.cooksdev.facebookfeedandroid.data.dto.posts.PostEntity;
 import com.cooksdev.facebookfeedandroid.data.dto.posts.PostsEntity;
 import com.cooksdev.facebookfeedandroid.data.dto.user.UserEntity;
 

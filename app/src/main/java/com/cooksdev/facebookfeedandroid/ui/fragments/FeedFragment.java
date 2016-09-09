@@ -1,5 +1,7 @@
 package com.cooksdev.facebookfeedandroid.ui.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,7 +22,7 @@ import com.cooksdev.facebookfeedandroid.ui.view.IFeedView;
 /**
  * Created by roma on 08.09.16.
  */
-public class FeedFragment  extends BaseFragment implements IFeedView{
+public class FeedFragment extends BaseFragment implements IFeedView, PostsAdapter.OnPermalinkClickListener {
 
     private RecyclerView rvPosts;
     private PostsAdapter postsAdapter;
@@ -55,13 +57,12 @@ public class FeedFragment  extends BaseFragment implements IFeedView{
     @Override
     public void onStart() {
         super.onStart();
-        presenter.onStart();
         presenter.getPosts();
     }
 
     @Override
     public void initPostsAdapter() {
-        postsAdapter = new PostsAdapter(getContext());
+        postsAdapter = new PostsAdapter(getContext(), this);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
         rvPosts.setLayoutManager(lm);
         rvPosts.setAdapter(postsAdapter);
@@ -71,4 +72,12 @@ public class FeedFragment  extends BaseFragment implements IFeedView{
     public void showPosts(Posts posts) {
         postsAdapter.updatePosts(posts);
     }
+
+    @Override
+    public void onPhotoClick(String permalinkUrl) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(permalinkUrl));
+        startActivity(intent);
+    }
+
 }

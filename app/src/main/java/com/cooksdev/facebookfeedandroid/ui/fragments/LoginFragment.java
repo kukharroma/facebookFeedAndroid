@@ -25,6 +25,7 @@ import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.w3c.dom.Text;
 
@@ -35,7 +36,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     private LoginButton btFbLogin;
     private Button btPosts;
-    private ImageView ivProfile;
+    private RoundedImageView ivProfile;
     private TextView tvUsername;
 
     private AccessTokenTracker accessTokenTracker;
@@ -51,7 +52,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         super.onCreate(savedInstanceState);
         presenter = new LoginPresenter();
         presenter.setView(this);
-        presenter.onCreate();
     }
 
     @Override
@@ -74,7 +74,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         btFbLogin.setReadPermissions(getResources().getString(R.string.fb_permissions));
         btFbLogin.setFragment(this);
         tvUsername = (TextView) view.findViewById(R.id.tv_username);
-        ivProfile = (ImageView) view.findViewById(R.id.iv_photo_profile);
+        ivProfile = (RoundedImageView) view.findViewById(R.id.iv_photo_profile);
         btPosts = (Button) view.findViewById(R.id.bt_show_posts);
         presenter.registerFbLoginButtonCallback(btFbLogin);
         accessTokenTracker = new AccessTokenTracker() {
@@ -91,12 +91,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
                 showPosts();
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        presenter.onResume();
     }
 
     @Override

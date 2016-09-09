@@ -18,6 +18,5 @@ public class FacebookFeedApplication extends Application{
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         StringsUtil.initialize(this);
-        FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS);
     }
 }

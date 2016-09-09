@@ -8,7 +8,7 @@ public class Post {
     private String created;
     private String message;
     private String pictureUrl;
-    private String permanentUrl;
+    private String permalinkUrl;
 
     public String getCreated() {
         return created;
@@ -34,11 +34,11 @@ public class Post {
         this.pictureUrl = pictureUrl;
     }
 
-    public String getPermanentUrl() {
-        return permanentUrl;
+    public String getPermalinkUrl() {
+        return permalinkUrl;
     }
 
-    public void setPermanentUrl(String permanentUrl) {
-        this.permanentUrl = permanentUrl;
+    public void setPermalinkUrl(String permalinkUrl) {
+        this.permalinkUrl = permalinkUrl;
     }
 }

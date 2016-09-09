@@ -24,22 +24,13 @@ import com.facebook.login.widget.LoginButton;
 public class LoginPresenter implements ILoginPresenter {
 
     private ILoginView view;
-    private CallbackManager fbCallbackManager;
-    private FbFeedFacebookCallback fbFeedFacebookCallback;
-    private GetUserInfoUseCase useCase;
-
+    private CallbackManager fbCallbackManager = CallbackManager.Factory.create();
+    private FbFeedFacebookCallback fbFeedFacebookCallback = new FbFeedFacebookCallback();
+    private GetUserInfoUseCase useCase = new GetUserInfoUseCase();
 
     @Override
     public void setView(ILoginView view) {
         this.view = view;
-    }
-
-    @Override
-    public void onCreate() {
-        fbCallbackManager = CallbackManager.Factory.create();
-        fbFeedFacebookCallback = new FbFeedFacebookCallback();
-        useCase = new GetUserInfoUseCase();
-
     }
 
     @Override
@@ -49,13 +40,8 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void onResume() {
-
-    }
-
-    @Override
     public void onStop() {
-
+        useCase.unSubscribe();
     }
 
     @Override

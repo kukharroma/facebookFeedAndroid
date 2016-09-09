@@ -24,7 +24,7 @@ public class PostsMapper {
     public static Post transfer(PostEntity postEntity) {
         Post post = new Post();
         post.setMessage(postEntity.getMessage());
-        post.setPermanentUrl(postEntity.getPermalinkUrl());
+        post.setPermalinkUrl(postEntity.getPermalinkUrl());
         post.setPictureUrl(postEntity.getFullPicture());
         post.setCreated(postEntity.getCreatedTime());
 

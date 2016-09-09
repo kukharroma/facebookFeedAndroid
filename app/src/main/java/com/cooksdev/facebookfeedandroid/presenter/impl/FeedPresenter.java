@@ -26,20 +26,9 @@ public class FeedPresenter implements IFeedPresenter {
     }
 
     @Override
-    public void onCreate() {
-
-    }
-
-    @Override
     public void onStart() {
-
+        getPosts();
     }
-
-    @Override
-    public void onResume() {
-
-    }
-
 
     @Override
     public void onStop() {
@@ -47,10 +36,6 @@ public class FeedPresenter implements IFeedPresenter {
     }
 
     class GetPostsSubscriber extends BaseSubscriber<Posts> {
-        @Override
-        public void onCompleted() {
-            view.showMessage("onCompleted()");
-        }
 
         @Override
         public void onError(Throwable e) {

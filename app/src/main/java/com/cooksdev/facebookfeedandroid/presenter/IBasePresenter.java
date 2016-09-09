@@ -7,10 +7,6 @@ public interface IBasePresenter<T> {
 
     void setView(T t);
 
-    void onCreate();
-
-    void onResume();
-
     void onStart();
 
     void onStop();

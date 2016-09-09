@@ -9,9 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.cooksdev.facebookfeedandroid.R;
 import com.cooksdev.facebookfeedandroid.model.Post;
 import com.cooksdev.facebookfeedandroid.model.Posts;
@@ -24,12 +21,14 @@ import java.util.List;
  */
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHolder> {
 
-    public PostsAdapter(Context context) {
-        this.context = context;
-    }
-
     private Context context;
+    private OnPermalinkClickListener permalinkClickListener;
     private List<Post> posts = new ArrayList<>();
+
+    public PostsAdapter(Context context, OnPermalinkClickListener permalinkClickListener) {
+        this.context = context;
+        this.permalinkClickListener = permalinkClickListener;
+    }
 
     public void updatePosts(Posts posts) {
         this.posts = posts.getPosts();
@@ -59,8 +58,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         return posts.size();
     }
 
-    public interface OnPermanentLinkClickListener {
-        void onPhotoClick(String permanentUrl);
+    public interface OnPermalinkClickListener {
+        void onPhotoClick(String permalinkUrl);
     }
 
     class PostViewHolder extends RecyclerView.ViewHolder {
@@ -75,26 +74,20 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
             tvCreated = (TextView) view.findViewById(R.id.tv_created);
             tvMessage = (TextView) view.findViewById(R.id.tv_message);
             ivPicture = (ImageView) view.findViewById(R.id.iv_picture);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String permalinkUrl = posts.get(getAdapterPosition()).getPermalinkUrl();
+                    permalinkClickListener.onPhotoClick(permalinkUrl);
+                }
+            });
         }
 
         public void loadPhoto(String imageUrl) {
             Glide.with(context)
                     .load(imageUrl)
                     .centerCrop()
-                    .listener(new RequestListener<String, GlideDrawable>() {
-                        @Override
-                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            if (target.getRequest().isFailed()) {
-                                target.getRequest().begin();
-                            }
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            return false;
-                        }
-                    })
                     .into(ivPicture);
         }
 
