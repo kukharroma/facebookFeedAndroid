@@ -10,4 +10,6 @@ public interface IBasePresenter<T> {
     void onStart();
 
     void onStop();
+
+    void onDestroy();
 }

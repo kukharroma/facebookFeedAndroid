@@ -49,7 +49,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
     public void onBindViewHolder(PostsAdapter.PostViewHolder holder, int position) {
         Post post = posts.get(position);
         holder.tvCreated.setText(post.getCreated());
-        holder.tvMessage.setText(post.getMessage());
+        if (post.getMessage() == null)
+            holder.tvMessage.setVisibility(View.GONE);
+        else {
+            holder.tvMessage.setText(post.getMessage());
+            holder.tvMessage.setVisibility(View.VISIBLE);
+        }
         holder.loadPhoto(post.getPictureUrl());
     }
 
@@ -85,10 +90,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         }
 
         public void loadPhoto(String imageUrl) {
-            Glide.with(context)
-                    .load(imageUrl)
-                    .centerCrop()
-                    .into(ivPicture);
+            if (imageUrl != null)
+                Glide.with(context)
+                        .load(imageUrl)
+                        .centerCrop()
+                        .crossFade()
+                        .into(ivPicture);
+            else
+                ivPicture.setImageResource(R.drawable.placeholder);
         }
 
     }

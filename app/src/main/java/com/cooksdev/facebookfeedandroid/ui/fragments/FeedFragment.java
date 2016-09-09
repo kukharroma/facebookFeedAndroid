@@ -24,10 +24,12 @@ import com.cooksdev.facebookfeedandroid.ui.view.IFeedView;
  */
 public class FeedFragment extends BaseFragment implements IFeedView, PostsAdapter.OnPermalinkClickListener {
 
-    private RecyclerView rvPosts;
-    private PostsAdapter postsAdapter;
+    public static final String TAG = FeedFragment.class.getSimpleName();
 
     private IFeedPresenter presenter;
+
+    private RecyclerView rvPosts;
+    private PostsAdapter postsAdapter;
 
     public static FeedFragment newInstance() {
         return new FeedFragment();

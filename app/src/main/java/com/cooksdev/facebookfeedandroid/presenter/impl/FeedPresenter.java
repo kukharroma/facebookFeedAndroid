@@ -35,6 +35,11 @@ public class FeedPresenter implements IFeedPresenter {
         useCase.unSubscribe();
     }
 
+    @Override
+    public void onDestroy() {
+
+    }
+
     class GetPostsSubscriber extends BaseSubscriber<Posts> {
 
         @Override

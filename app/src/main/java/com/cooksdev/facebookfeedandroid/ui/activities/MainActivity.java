@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void showLoginFragment(){
         getSupportFragmentManager().beginTransaction().
-                add(R.id.container, LoginFragment.newInstance(), LoginFragment.class.getSimpleName()).commit();
+                add(R.id.container, LoginFragment.newInstance(), LoginFragment.TAG).commit();
     }
 
     public void showFeedFragment(){
         getSupportFragmentManager().beginTransaction().
-                replace(R.id.container, FeedFragment.newInstance(), FeedFragment.class.getSimpleName()).addToBackStack("").commit();
+                replace(R.id.container, FeedFragment.newInstance(), FeedFragment.TAG).addToBackStack(FeedFragment.TAG).commit();
     }
 }

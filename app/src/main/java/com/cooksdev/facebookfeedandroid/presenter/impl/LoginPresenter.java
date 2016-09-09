@@ -12,6 +12,7 @@ import com.cooksdev.facebookfeedandroid.presenter.ILoginPresenter;
 import com.cooksdev.facebookfeedandroid.ui.view.ILoginView;
 import com.cooksdev.facebookfeedandroid.util.StringsUtil;
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -27,6 +28,7 @@ public class LoginPresenter implements ILoginPresenter {
     private CallbackManager fbCallbackManager = CallbackManager.Factory.create();
     private FbFeedFacebookCallback fbFeedFacebookCallback = new FbFeedFacebookCallback();
     private GetUserInfoUseCase useCase = new GetUserInfoUseCase();
+    private AccessTokenTracker accessTokenTracker;
 
     @Override
     public void setView(ILoginView view) {
@@ -35,6 +37,15 @@ public class LoginPresenter implements ILoginPresenter {
 
     @Override
     public void onStart() {
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if (currentAccessToken == null)
+                    view.hideUserInfo();
+            }
+        };
+        accessTokenTracker.startTracking();
+
         if (AccessToken.getCurrentAccessToken() != null)
             useCase.execute(new UserInfoSubscriber());
     }
@@ -42,6 +53,11 @@ public class LoginPresenter implements ILoginPresenter {
     @Override
     public void onStop() {
         useCase.unSubscribe();
+    }
+
+    @Override
+    public void onDestroy() {
+        accessTokenTracker.stopTracking();
     }
 
     @Override

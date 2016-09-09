@@ -34,14 +34,15 @@ import org.w3c.dom.Text;
  */
 public class LoginFragment extends BaseFragment implements ILoginView {
 
+    public static final String TAG = LoginFragment.class.getSimpleName();
+
+    private ILoginPresenter presenter;
+    private AccessTokenTracker accessTokenTracker;
+
     private LoginButton btFbLogin;
     private Button btPosts;
     private RoundedImageView ivProfile;
     private TextView tvUsername;
-
-    private AccessTokenTracker accessTokenTracker;
-
-    private ILoginPresenter presenter;
 
     public static LoginFragment newInstance() {
         return new LoginFragment();
@@ -52,12 +53,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         super.onCreate(savedInstanceState);
         presenter = new LoginPresenter();
         presenter.setView(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.onStart();
     }
 
     @Nullable
@@ -77,20 +72,18 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         ivProfile = (RoundedImageView) view.findViewById(R.id.iv_photo_profile);
         btPosts = (Button) view.findViewById(R.id.bt_show_posts);
         presenter.registerFbLoginButtonCallback(btFbLogin);
-        accessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                if (currentAccessToken == null)
-                    hideUserInfo();
-            }
-        };
-        accessTokenTracker.startTracking();
         btPosts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPosts();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.onStart();
     }
 
     @Override
@@ -102,7 +95,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        accessTokenTracker.stopTracking();
+        presenter.onDestroy();
     }
 
     @Override
@@ -118,20 +111,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         Glide.with(this)
                 .load(user.getProfileImageUrl())
                 .fitCenter()
-                .listener(new RequestListener<String, GlideDrawable>() {
-                    @Override
-                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                        if (target.getRequest().isFailed()) {
-                            target.getRequest().begin();
-                        }
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        return false;
-                    }
-                })
+                .crossFade()
                 .into(ivProfile);
     }
 
