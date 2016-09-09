@@ -3,8 +3,9 @@ package com.cooksdev.facebookfeedandroid.data.repository;
 import com.cooksdev.facebookfeedandroid.data.api.FacebookFeedApi;
 import com.cooksdev.facebookfeedandroid.data.dto.posts.PostsEntity;
 import com.cooksdev.facebookfeedandroid.data.dto.user.UserEntity;
+import com.cooksdev.facebookfeedandroid.data.mapper.PostsMapper;
 import com.cooksdev.facebookfeedandroid.data.mapper.UserMapper;
-import com.cooksdev.facebookfeedandroid.model.Post;
+import com.cooksdev.facebookfeedandroid.model.Posts;
 import com.cooksdev.facebookfeedandroid.model.User;
 
 import rx.Observable;
@@ -24,11 +25,11 @@ public class UserRepository {
         });
     }
 
-    public Observable<Post> getUserPosts(){
-        return FacebookFeedApi.getInstance().getUserPosts().map(new Func1<PostsEntity, Post>() {
+    public Observable<Posts> getUserPosts() {
+        return FacebookFeedApi.getInstance().getUserPosts().map(new Func1<PostsEntity, Posts>() {
             @Override
-            public Post call(PostsEntity postsEntity) {
-                return null;
+            public Posts call(PostsEntity postsEntity) {
+                return PostsMapper.transfer(postsEntity);
             }
         });
     }
