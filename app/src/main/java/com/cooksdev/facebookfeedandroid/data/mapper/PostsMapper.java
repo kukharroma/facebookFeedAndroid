@@ -2,9 +2,9 @@ package com.cooksdev.facebookfeedandroid.data.mapper;
 
 import com.cooksdev.facebookfeedandroid.data.dto.posts.PostEntity;
 import com.cooksdev.facebookfeedandroid.data.dto.posts.PostsEntity;
-import com.cooksdev.facebookfeedandroid.model.Post;
-import com.cooksdev.facebookfeedandroid.model.Posts;
-import com.cooksdev.facebookfeedandroid.util.DateFormatter;
+import com.cooksdev.facebookfeedandroid.data.model.Post;
+import com.cooksdev.facebookfeedandroid.data.model.Posts;
+import com.cooksdev.facebookfeedandroid.presentation.util.DateFormatter;
 
 /**
  * Created by roma on 09.09.16.

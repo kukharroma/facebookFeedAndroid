@@ -1,7 +1,7 @@
 package com.cooksdev.facebookfeedandroid.data.mapper;
 
 import com.cooksdev.facebookfeedandroid.data.dto.user.UserEntity;
-import com.cooksdev.facebookfeedandroid.model.User;
+import com.cooksdev.facebookfeedandroid.data.model.User;
 
 /**
  * Created by roma on 09.09.16.

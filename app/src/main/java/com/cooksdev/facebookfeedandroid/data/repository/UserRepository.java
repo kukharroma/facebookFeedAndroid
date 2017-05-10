@@ -5,8 +5,8 @@ import com.cooksdev.facebookfeedandroid.data.dto.posts.PostsEntity;
 import com.cooksdev.facebookfeedandroid.data.dto.user.UserEntity;
 import com.cooksdev.facebookfeedandroid.data.mapper.PostsMapper;
 import com.cooksdev.facebookfeedandroid.data.mapper.UserMapper;
-import com.cooksdev.facebookfeedandroid.model.Posts;
-import com.cooksdev.facebookfeedandroid.model.User;
+import com.cooksdev.facebookfeedandroid.data.model.Posts;
+import com.cooksdev.facebookfeedandroid.data.model.User;
 
 import rx.Observable;
 import rx.functions.Func1;
